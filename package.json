@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node_modules/.bin/webpack serve --config ./src/webpack.common.js"
+    "dev": "webpack serve --config ./src/webpack.common.js",
+    "build": "webpack --config ./src/webpack.common.js"
   },
   "keywords": [],
   "author": "",
