@@ -51,23 +51,24 @@ module.exports = {
     },
     minimizer: [
       new ImageMinimizerPlugin({
+        // sharp ships prebuilt binaries (arm64 and x64), unlike the imagemin-* packages
         minimizer: {
-          implementation: ImageMinimizerPlugin.imageminMinify,
+          implementation: ImageMinimizerPlugin.sharpMinify,
           options: {
-            plugins: [
-              ["imagemin-mozjpeg", { quality: 75, progressive: true }],
-              "imagemin-pngquant",
-              "imagemin-svgo",
-            ],
+            encodeOptions: {
+              jpeg: { quality: 75, progressive: true, mozjpeg: true },
+            },
           },
         },
         generator: [
           {
             // You can apply generator using `?as=webp`, you can use any name and provide more options
             preset: "webp",
-            implementation: ImageMinimizerPlugin.imageminGenerate,
+            implementation: ImageMinimizerPlugin.sharpGenerate,
             options: {
-              plugins: ["imagemin-webp"],
+              encodeOptions: {
+                webp: { quality: 75 },
+              },
             },
           },
         ],
