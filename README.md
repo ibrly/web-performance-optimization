@@ -10,7 +10,7 @@ A static page built with webpack 5, used as a playground for front-end performan
 | Vendor code split into its own chunk (`splitChunks.cacheGroups`) | `src/webpack.common.js` |
 | CSS extracted to a file and minified | MiniCssExtractPlugin + CssMinimizerPlugin |
 | Unused CSS removed (Bootstrap included) | PurgeCSSPlugin |
-| Images compressed at build time (mozjpeg, pngquant, svgo) and WebP variants generated | ImageMinimizerPlugin |
+| JPEGs compressed at build time (sharp with mozjpeg, quality 75, progressive) and WebP variants generated with `?as=webp` | ImageMinimizerPlugin + sharp |
 | Modern CSS with fallbacks | postcss-preset-env |
 | One-year immutable `Cache-Control` for static assets, ETag removed | [.htaccess](.htaccess) |
 
@@ -23,5 +23,3 @@ npm run build   # production build into dist/
 ```
 
 Deploy `dist/` together with `.htaccess` on Apache to get the caching headers.
-
-> On Apple Silicon, `imagemin-mozjpeg` may fail to install because its prebuilt binary is x86-only. Switching the image minimizer to `sharp` is on the roadmap.
