@@ -8,6 +8,7 @@ A static page built with webpack 5, used as a playground for front-end performan
 |-----------|-------|
 | Long-term caching with content-hashed file names (`[name].[contenthash].js/css`) | `src/webpack.common.js` output and MiniCssExtractPlugin |
 | Vendor code split into its own chunk (`splitChunks.cacheGroups`) | `src/webpack.common.js` |
+| JavaScript minified | Terser, kept with `"..."` in `optimization.minimizer` |
 | CSS extracted to a file and minified | MiniCssExtractPlugin + CssMinimizerPlugin |
 | Unused CSS removed (Bootstrap included) | PurgeCSSPlugin |
 | JPEGs compressed at build time (sharp with mozjpeg, quality 75, progressive) and WebP variants generated with `?as=webp` | ImageMinimizerPlugin + sharp |

@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
 const { sync } = require("glob-all");
 
@@ -49,7 +50,10 @@ module.exports = {
         },
       },
     },
+    // Listing minimizers replaces webpack's defaults; "..." keeps Terser for JS.
     minimizer: [
+      "...",
+      new CssMinimizerPlugin(),
       new ImageMinimizerPlugin({
         // sharp ships prebuilt binaries (arm64 and x64), unlike the imagemin-* packages
         minimizer: {
